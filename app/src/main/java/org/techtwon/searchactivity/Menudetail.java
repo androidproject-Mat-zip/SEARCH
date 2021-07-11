@@ -5,10 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
 
 public class Menudetail extends AppCompatActivity {
 
@@ -30,6 +33,17 @@ public class Menudetail extends AppCompatActivity {
         tx4.setText("영업 시간: "+bundle.getString("time"));
         TextView tx5 = (TextView) findViewById(R.id.textView8);
         tx5.setText("브레이크 타임: "+bundle.getString("breakT"));
+
+        ImageView ima = findViewById((R.id.imageView2));
+        ImageView ima2 = findViewById((R.id.imageView4));
+
+        Glide.with(this)
+                .load(bundle.getString("ima"))
+                .into(ima);
+
+        Glide.with(this)
+                .load(bundle.getString("ima2"))
+                .into(ima2);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -1,21 +1,39 @@
 package org.techtwon.searchactivity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+
+
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -27,15 +45,36 @@ public class MainActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     EditText search;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        menuArrayList = new ArrayList<>();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("store").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value,  @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("Listen failed.", e);
+                    return;
+                }
+                int count = value.size();
+                menuArrayList.clear();
+
+                for (QueryDocumentSnapshot doc : value){
+                    if(doc.get("name") != null){
+                        menuArrayList.add(new Menu(doc.getString("name"), doc.getString("add"), doc.getString("num"),
+                                doc.getString("time"),doc.getString("breakT"), doc.getString("ima"),doc.getString("ima2")));
+                    }
+                }
+            }
+        });
 
         ImageButton clear = (ImageButton) findViewById(R.id.clearB);
-
-
 
         clear.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -43,24 +82,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter cate = ArrayAdapter.createFromResource(this, R.array.cate, android.R.layout.simple_spinner_dropdown_item);
-
-        cate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        search = findViewById(R.id.search);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        filteredList = new ArrayList<>();
-        menuArrayList = new ArrayList<>();
+        search = findViewById(R.id.search);
 
+        filteredList = new ArrayList<>();
 
         menuAdapter = new MenuAdapter(menuArrayList,this);
-        menuArrayList.add(new Menu("A곱창","경기도 평택시 ---","010-0000-0000","10시~24시","3시~4시"));
-        menuArrayList.add(new Menu("B치킨","전라남도 광양시 ---","010-1111-1111", "12시~22시","없음"));
-        menuArrayList.add(new Menu("C짜장면","전라남도 광양시 ---", "010-2222-2222","11시~20시","없음"));
+
 
         recyclerView.setAdapter(menuAdapter);
 
@@ -68,11 +102,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(MenuAdapter.ViewHolder holder, View v, int Position) {
                 Menu item = menuAdapter.getItem(Position);
-                showAc(item.getName(),item.getAdd(),item.getNum(),item.getTime(),item.getBreakT());
+                showAc(item.getName(),item.getAdd(),item.getNum(),item.getTime(),item.getBreakT(),item.getIma(),item.getIma2());
 
             }
         });
-
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -116,8 +149,7 @@ public class MainActivity extends AppCompatActivity {
         menuAdapter.filterList(filteredList);
     }
 
-
-    public void showAc(String name, String add, String num, String time, String breakT) {
+    public void showAc(String name, String add, String num, String time, String breakT, String ima, String ima2) {
 
         Intent intent = new Intent(this,Menudetail.class);
 
@@ -126,9 +158,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("num",num);
         intent.putExtra("time",time);
         intent.putExtra("breakT",breakT);
+        intent.putExtra("ima",ima);
+        intent.putExtra("ima2",ima2);
         startActivity(intent);
     }
-
-
 
 }

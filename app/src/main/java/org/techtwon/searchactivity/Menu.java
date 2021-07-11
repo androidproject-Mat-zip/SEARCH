@@ -6,17 +6,38 @@ public class Menu {
     String num;
     String time;
     String breakT;
+    String ima;
 
 
 
-    public Menu(String name, String add, String num, String time, String breakT) {
+
+
+    public Menu(String name, String add, String num, String time, String breakT, String ima, String ima2) {
         this.name = name;
         this.add = add;
         this.num = num;
         this.time = time;
         this.breakT = breakT;
+        this.ima = ima;
+        this.ima2 = ima2;
+    }
+    public String getIma() {
+        return ima;
     }
 
+    public void setIma(String ima) {
+        this.ima = ima;
+    }
+
+    public String getIma2() {
+        return ima2;
+    }
+
+    public void setIma2(String ima2) {
+        this.ima2 = ima2;
+    }
+
+    String ima2;
     public String getName() {
         return name;
     }

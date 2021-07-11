@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -20,12 +23,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     OnMenuItemClickListener listener;
 
     ArrayList<Menu> items = new ArrayList<Menu>();
-    Activity activity;
+    //Activity activity;
+    Context context;
 
-
-    public MenuAdapter(ArrayList<Menu> list,Activity activity){
+    public MenuAdapter(ArrayList<Menu> list,Context context){
         this.items = list;
-        this.activity = activity;
+        this.context = context;
 
     }
 
@@ -54,8 +57,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        Menu item = items.get(position);
-        viewHolder.setItem(item);
+        viewHolder.textView.setText(items.get(position).getName());
+        viewHolder.textView2.setText(items.get(position).getAdd());
+
 
     }
 
@@ -77,6 +81,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
         TextView textView2;
+        ImageView imageView;
+        ImageView imageView2;
 
         public ViewHolder(View itemView, final OnMenuItemClickListener listener){
             super(itemView);
@@ -93,10 +99,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     }
                 }
             });
-        }
-        public void setItem(Menu item){
-            textView.setText(item.getName());
-            textView2.setText(item.getAdd());
         }
 
     }
