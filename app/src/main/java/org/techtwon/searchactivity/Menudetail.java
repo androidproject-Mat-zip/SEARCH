@@ -26,13 +26,19 @@ public class Menudetail extends AppCompatActivity {
         TextView tx = (TextView) findViewById(R.id.textView3);
         tx.setText(bundle.getString("name"));
         TextView tx2 = (TextView) findViewById(R.id.textView4);
-        tx2.setText("◦주소: "+ bundle.getString("add"));
+        tx2.setText(bundle.getString("add"));
         TextView tx3 = (TextView) findViewById(R.id.textView5);
         tx3.setText("◦전화번호: "+bundle.getString("num"));
         TextView tx4 = (TextView) findViewById(R.id.textView7);
-        tx4.setText("◦영업 시간: "+bundle.getString("time"));
-        TextView tx5 = (TextView) findViewById(R.id.textView8);
-        tx5.setText("◦브레이크 타임: "+bundle.getString("breakT"));
+        tx4.setText("◦운영시간: "+bundle.getString("opentime") +" ~ "+ bundle.getString("endtime"));
+        TextView tx6 = (TextView) findViewById(R.id.textView8);
+        tx6.setText("◦브레이크 타임: "+bundle.getString("breakT"));
+        TextView tx8 = (TextView) findViewById(R.id.textView13);
+        tx8.setText("◦정기휴일: "+bundle.getString("holiday"));
+        TextView tx7 = (TextView) findViewById(R.id.textView11);
+        tx7.setText("★추천메뉴: "+bundle.getString("recomand"));
+;
+
 
         ImageView ima = findViewById((R.id.imageView2));
         ImageView ima2 = findViewById((R.id.imageView4));

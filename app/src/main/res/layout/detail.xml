@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:scale_base_width="120"
-        app:scale_base_height="90"
+        app:scale_base_height="85"
         android:background="@drawable/under">
 
         <TextView
@@ -89,6 +89,21 @@
             app:srcCompat="@mipmap/ic_launcher"
             tools:ignore="MissingPrefix"
             android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="추천 메뉴"
+            android:fontFamily="@font/nanumsquare_acb"
+            android:textColor="#E87C00"
+            app:scale_width="70"
+            app:scale_height="8"
+            app:scale_textsize="4"
+            app:scale_left="5.8"
+            app:scale_top="75"
+
+            tools:ignore="MissingPrefix"/>
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
     <TextView
@@ -114,6 +129,18 @@
         android:layout_marginLeft="20dp"
         android:background="@color/white">
 
+        <TextView
+            android:id="@+id/storen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="◦주소: "
+            android:fontFamily="@font/nanumsquare_acr"
+            android:textColor="#080909"
+            app:scale_width="50"
+            app:scale_height="20"
+            app:scale_textsize="10"
+            app:scale_top="3"
+            tools:ignore="MissingPrefix" />
 
         <TextView
             android:id="@+id/textView4"
@@ -122,10 +149,14 @@
             android:text="주소"
             android:fontFamily="@font/nanumsquare_acr"
             android:textColor="#080909"
-            app:scale_width="200"
+            app:scale_width="140"
             app:scale_height="15"
             app:scale_textsize="10"
+            app:scale_left="35"
             app:scale_top="3"
+            app:textview_wrapcontent_direction="bottom"
+            app:textview_wrapcontent_movesiblings="true"
+            app:textview_wrapcontent_resizesurrounded="true"
             tools:ignore="MissingPrefix" />
 
         <TextView
@@ -138,20 +169,20 @@
             app:scale_width="200"
             app:scale_height="15"
             app:scale_textsize="10"
-            app:scale_top="20"
+            app:scale_top="24"
             tools:ignore="MissingPrefix"/>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="영업시간"
+            android:text="오픈시간"
             android:textColor="#0B0B0B"
             android:fontFamily="@font/nanumsquare_acr"
             app:scale_width="200"
             app:scale_height="15"
             app:scale_textsize="10"
-            app:scale_top="37"
+            app:scale_top="41"
             tools:ignore="MissingPrefix"/>
 
         <TextView
@@ -164,8 +195,22 @@
             app:scale_width="200"
             app:scale_height="15"
             app:scale_textsize="10"
-            app:scale_top="54"
+            app:scale_top="58"
             tools:ignore="MissingPrefix"/>
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="휴무일"
+            android:fontFamily="@font/nanumsquare_acr"
+            android:textColor="#0B0B0B"
+            app:scale_width="200"
+            app:scale_height="15"
+            app:scale_textsize="10"
+            app:scale_top="75"
+            tools:ignore="MissingPrefix"/>
+
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 

@@ -81,8 +81,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
         TextView textView2;
-        ImageView imageView;
-        ImageView imageView2;
 
         public ViewHolder(View itemView, final OnMenuItemClickListener listener){
             super(itemView);

@@ -4,22 +4,48 @@ public class Menu {
     String name;
     String add;
     String num;
-    String time;
+    String opentime;
+    String endtime;
     String breakT;
     String ima;
+    String recomand;
+    String holiday;
 
-
-
-
-
-    public Menu(String name, String add, String num, String time, String breakT, String ima, String ima2) {
+    public Menu(String name, String add, String num, String opentime, String endtime, String breakT, String ima, String ima2, String recomand, String holiday) {
         this.name = name;
         this.add = add;
         this.num = num;
-        this.time = time;
+        this.opentime = opentime;
+        this.endtime = endtime;
         this.breakT = breakT;
         this.ima = ima;
         this.ima2 = ima2;
+        this.recomand = recomand;
+        this.holiday = holiday;
+    }
+
+    public String getHoliday() {
+        return holiday;
+    }
+
+    public void setHoliday(String holiday) {
+        this.holiday = holiday;
+    }
+
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+    public String getRecomand() {
+        return recomand;
+    }
+
+    public void setRecomand(String recomand) {
+        this.recomand = recomand;
     }
     public String getIma() {
         return ima;
@@ -62,12 +88,12 @@ public class Menu {
         this.num = num;
     }
 
-    public String getTime() {
-        return time;
+    public String getOpentime() {
+        return opentime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setOpentime(String opentime) {
+        this.opentime = opentime;
     }
 
     public String getBreakT() {

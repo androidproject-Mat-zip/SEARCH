@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -36,6 +37,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,10 +56,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         menuArrayList = new ArrayList<>();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("store").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("StoreData").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value,  @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
@@ -64,15 +69,28 @@ public class MainActivity extends AppCompatActivity {
                 }
                 int count = value.size();
                 menuArrayList.clear();
-
+                String breaktime = "";
+                String regular ="";
                 for (QueryDocumentSnapshot doc : value){
+                    if(doc.getBoolean("breaktimeistrue")){
+                        breaktime = doc.getString("breaktime");
+                    }
+                    else
+                        breaktime = "X";
+                    if(doc.get("regularholiday") != ""){
+                        regular = doc.getString("regularholiday");
+                    }
+                    else
+                        regular = "X";
                     if(doc.get("name") != null){
-                        menuArrayList.add(new Menu(doc.getString("name"), doc.getString("add"), doc.getString("num"),
-                                doc.getString("time"),doc.getString("breakT"), doc.getString("ima"),doc.getString("ima2")));
+                        menuArrayList.add(new Menu(doc.getString("name"), doc.getString("address"), doc.getString("telephone"),
+                                doc.getString("starttime"),doc.getString("endtime"), breaktime, doc.getString("ima1"),
+                                doc.getString("ima2"),doc.getString("menu"), regular));
                     }
                 }
             }
         });
+
 
         ImageButton clear = (ImageButton) findViewById(R.id.clearB);
 
@@ -102,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(MenuAdapter.ViewHolder holder, View v, int Position) {
                 Menu item = menuAdapter.getItem(Position);
-                showAc(item.getName(),item.getAdd(),item.getNum(),item.getTime(),item.getBreakT(),item.getIma(),item.getIma2());
+                showAc(item.getName(),item.getAdd(),item.getNum(),item.getOpentime(),item.getEndtime(),
+                        item.getBreakT(),item.getIma(),item.getIma2(),item.getRecomand(),item.getHoliday());
 
             }
         });
@@ -149,17 +168,20 @@ public class MainActivity extends AppCompatActivity {
         menuAdapter.filterList(filteredList);
     }
 
-    public void showAc(String name, String add, String num, String time, String breakT, String ima, String ima2) {
+    public void showAc(String name, String add, String num, String opentime, String endtime, String breakT, String ima, String ima2, String recomand, String holiday) {
 
         Intent intent = new Intent(this,Menudetail.class);
 
         intent.putExtra("name",name);
         intent.putExtra("add",add);
         intent.putExtra("num",num);
-        intent.putExtra("time",time);
+        intent.putExtra("opentime",opentime);
+        intent.putExtra("endtime",endtime);
         intent.putExtra("breakT",breakT);
         intent.putExtra("ima",ima);
         intent.putExtra("ima2",ima2);
+        intent.putExtra("recomand",recomand);
+        intent.putExtra("holiday",holiday);
         startActivity(intent);
     }
 

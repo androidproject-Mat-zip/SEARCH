@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "419490648402",
-    "project_id": "example-2eabe",
-    "storage_bucket": "example-2eabe.appspot.com"
+    "project_number": "171120119298",
+    "project_id": "mat-zip",
+    "storage_bucket": "mat-zip.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:419490648402:android:4eea102869dbe8789d6a8b",
+        "mobilesdk_app_id": "1:171120119298:android:7f48a1f58efea48133611b",
         "android_client_info": {
           "package_name": "org.techtwon.searchactivity"
         }
       },
       "oauth_client": [
         {
-          "client_id": "419490648402-u4kpnckpijv38olegqf2l7ikh61fnrfe.apps.googleusercontent.com",
+          "client_id": "171120119298-hi58pe38poq5vbicc2e1vrqavnc28dag.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJnk-PStfWBEJTZTSmcejOJQKH6bO0-98"
+          "current_key": "AIzaSyBKa9RTBxYn-TG9ramAoVMWM-FfMfdNRZ0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "419490648402-u4kpnckpijv38olegqf2l7ikh61fnrfe.apps.googleusercontent.com",
+              "client_id": "171120119298-hi58pe38poq5vbicc2e1vrqavnc28dag.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
