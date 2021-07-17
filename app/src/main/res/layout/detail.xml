@@ -62,7 +62,7 @@
             android:drawableEnd="@drawable/menu_icon"
             android:fontFamily="@font/nanumsquare_acb"
             android:paddingStart="5dp"
-            android:text="대표 메뉴"
+            android:text="추천 메뉴"
             android:textColor="#080909"
             tools:ignore="MissingPrefix" />
 
